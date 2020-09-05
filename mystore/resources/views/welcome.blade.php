@@ -21,14 +21,15 @@
             <p class="lead text-muted">
                 This is my first ever time using Shopify!
             </p>
+
             {{ Form::open(array('route' => 'customers-update', 'method' => 'PUT', 'class'=>'col-md-12')) }}
                 <input class="btn btn-primary my-2" type="submit" value="Update Customers" />
             {{ Form::close() }}
-            <p>
-                <a href="/customers/view" class="btn btn-secondary my-2">View Customers</a>
-                <a href="/products/view" class="btn btn-primary my-2">View Products</a>
-                <a href="/orders/view" class="btn btn-secondary my-2">View Orders</a>
-            </p>
+
+            {{ Form::open(array('route' => 'products-update', 'method' => 'PUT', 'class'=>'col-md-12')) }}
+            <input class="btn btn-primary my-2" type="submit" value="Update Products" />
+            {{ Form::close() }}
+
         </div>
     </section>
 

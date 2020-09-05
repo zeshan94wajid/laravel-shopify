@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::put('/customers/update', array(
     'as' => 'customers-update',
     'uses' => 'CustomerController@update'));
+
+Route::put('/products/update', array(
+    'as' => 'products-update',
+    'uses' => 'ProductController@update'));
