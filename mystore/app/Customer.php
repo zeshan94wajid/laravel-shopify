@@ -28,7 +28,7 @@ class Customer extends Model
     {
         $this->shopify_id = $attributes['id'];
         $this->firstname = $attributes['first_name'];
-        $this->last_name = $attributes['last_name'];
+        $this->lastname = $attributes['last_name'];
         $this->email = $attributes['email'];
         $this->last_order_id = $attributes['last_order_id'];
         $this->city = $attributes['default_address']['city'];
