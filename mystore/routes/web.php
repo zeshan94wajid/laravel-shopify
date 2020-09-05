@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::put('/customers/update', array(
+    'as' => 'customers-update',
+    'uses' => 'CustomerController@update'));

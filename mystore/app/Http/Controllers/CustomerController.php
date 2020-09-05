@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use http\Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
@@ -21,12 +23,39 @@ class CustomerController extends Controller
         return $this->sendResponse($customers, $message);
     }
 
-    /**
-     * <p> Updates the Customer tables with data from Shopify </p>
-     *
-     */
-    public function syncShopifyCustomers()
+
+    public function update()
     {
-        
+        try {
+            $customers = $this->getShopifyCustomers();
+            
+
+        } catch (\Exception $e) {
+            return $this->sendError($e->getMessage());
+        }
+
+    }
+    /**
+     * <p> Returns customer data from Shopify store </p>
+     *
+     * @throws \Exception
+     */
+    private function getShopifyCustomers()
+    {
+        $endpoint = 'customers.json';
+        $shop_url = env('SHOP_URL');
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+
+        $client = new Client(['headers' => $headers]);
+
+        try {
+            $api_response = $client->request('GET', $shop_url . $endpoint);
+        } catch (GuzzleException $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        return json_decode($api_response->getBody()->getContents(), true)['customers'];
     }
 }
