@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('shopify_id');
             $table->string('total_price');
-            $table->string('order_date');
+            $table->dateTime('order_date');
             $table->string('customer_shopify_id');
             $table->timestamps();
         });
