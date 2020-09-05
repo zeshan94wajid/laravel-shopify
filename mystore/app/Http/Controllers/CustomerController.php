@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Customer;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use http\Exception;
 use Illuminate\Http\JsonResponse;
 
 class CustomerController extends Controller
@@ -23,18 +22,28 @@ class CustomerController extends Controller
         return $this->sendResponse($customers, $message);
     }
 
-
+    /**
+     * <p> Update customer data from Shopify store </p>
+     *
+     * @return JsonResponse
+     */
     public function update()
     {
         try {
             $customers = $this->getShopifyCustomers();
-            
+
+            foreach($customers as $c) {
+                $customer = new Customer();
+                $customer->update($c);
+            }
+
+            return $this->sendResponse(Customer::all(), 'Customers updates successfully.');
 
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage());
         }
-
     }
+
     /**
      * <p> Returns customer data from Shopify store </p>
      *
