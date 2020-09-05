@@ -36,3 +36,8 @@ Route::put('/orders/update', array(
 Route::get('/orders/average/all', array(
     'as' => 'get-average-order-for-all',
     'uses' => 'OrderController@getAverageOrderForAll'));
+
+
+Route::post('/customers/orders/average', array(
+    'as' => 'get-customer-average-order-value',
+    'uses' => 'CustomerController@getOrderAverage'));

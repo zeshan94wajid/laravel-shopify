@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Order;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 class CustomerController extends Controller
@@ -42,6 +44,23 @@ class CustomerController extends Controller
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage());
         }
+    }
+
+    /**
+     * <p> Get average order value for a customer </p>
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getOrderAverage(Request $request)
+    {
+        $customer = Customer::find($request->get('customer'));
+        if (Order::where('customer_shopify_id', $customer->shopify_id)->get()->count() > 0) {
+
+            return $this->sendResponse(Order::getAverageCustomerOrderValue($customer->shopify_id), 'Average order value');
+        }
+
+        return $this->sendError('This customer has not placed any order yet');
     }
 
     /**

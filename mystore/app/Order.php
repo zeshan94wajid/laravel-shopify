@@ -40,4 +40,15 @@ class Order extends Model
     {
         return Order::all()->average('total_price');
     }
+
+    /**
+     * <p> Get average customer order value </p>
+     *
+     * @param $shopify_id
+     * @return mixed
+     */
+    public static function getAverageCustomerOrderValue($shopify_id)
+    {
+        return Order::where('customer_shopify_id', $shopify_id)->average('total_price');
+    }
 }

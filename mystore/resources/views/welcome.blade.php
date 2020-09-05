@@ -51,7 +51,28 @@
             @endif
 
             @if (!$products->isEmpty() && !$customers->isEmpty() && !$orders->isEmpty())
-                <a href="{{route('get-average-order-for-all')}}" class="btn btn-secondary my-2">Get average</a>
+                <div class="row">
+                    <div class="col-lg-5">
+                        <h5>Get the average order value</h5>
+                        <a href="{{route('get-average-order-for-all')}}" class="btn btn-secondary my-2 align-content-center">Get average</a>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <h5>Get average order value for a customer</h5>
+                        {{ Form::open(array('route' => 'get-customer-average-order-value', 'method' => 'POST')) }}
+                        <div class="form-group">
+                            <label for="customers">Select a customers</label>
+                            <select class="form-control" name="customer">
+                                @foreach($customers as $c)
+                                    <option value="{{$c->id}}">{{$c->shopify_id . ' - ' . $c->firstname . ' ' . $c->lastname}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+
             @endif
         </div>
     </div>
