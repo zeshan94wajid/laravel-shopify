@@ -8,7 +8,23 @@ class Product extends Model
 {
     protected $fillable = [
         'shopify_id',
-        'name',
+        'title',
         'type',
     ];
+
+    /**
+     * <p> Update product model </p>
+     *
+     * @param array $attributes
+     * @param array $options
+     * @return bool
+     */
+    public function update(array $attributes = [], array $options = [])
+    {
+        $this->shopify_id = $attributes['id'];
+        $this->title = $attributes['title'];
+        $this->type = $attributes['product_type'];
+
+        return $this->save();
+    }
 }
