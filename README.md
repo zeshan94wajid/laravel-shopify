@@ -1,5 +1,7 @@
 # Shopify App
 
+https://user-images.githubusercontent.com/57898558/92305799-6fe09e80-ef82-11ea-874f-7244d2429816.PNG
+
 This is a simple REST JSON API which allows to Save customer, orders and products from your chosen shopify store to a MySQL Database. It returns responses in a Rest 
 You can then use it to calculate the average order value accross all customers and an average order value for a specific customer.
 
