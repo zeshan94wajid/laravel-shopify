@@ -1,6 +1,9 @@
 # Shopify App
 
-This is a simple Shopify App which allows to Save customer, orders and products from your chosen shopify store to a MySQL Database. You can then use the front end built within it to calculate the average order value accross all customers and an average order value for a specific customer.
+This is a simple REST JSON API which allows to Save customer, orders and products from your chosen shopify store to a MySQL Database. It returns responses in a Rest 
+You can then use it to calculate the average order value accross all customers and an average order value for a specific customer.
+
+PS: There is a Front end built within it which demonstrate each Application endpoint.
 
 ## Getting Started
 
@@ -28,3 +31,56 @@ Run the following to get the app running on your localhost
 ```
 php artisan serve
 ```
+
+## Update customer data from Shopify
+
+### Request
+
+`PUT /customers/update`
+
+### Response
+
+`{"success":true,"message":"Customers updated successfully.","data":[]}`
+
+## Update product data from Shopify
+
+### Request
+
+`PUT /products/update`
+
+### Response
+
+`{"success":true,"message":"Products updated successfully.","data":[]}`
+
+## Update order data from Shopify
+
+### Request
+
+`PUT /orders/update`
+
+### Response
+
+`{"success":true,"message":"Orders updated successfully.","data":[]}`
+
+
+## Get averarge order value accross all customers
+
+### Request
+
+`GET /orders/average/all`
+
+### Response
+
+`{"success":true,"message":"Average order value","data":'average'}`
+
+
+## Get averarge order value for a specific customer
+
+### Request
+
+`POST /customers/orders/average`
+`{"id":1}`
+
+### Response
+
+`{"success":true,"message":"Average order value","data":'average'}`
