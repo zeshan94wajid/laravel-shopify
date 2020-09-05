@@ -33,13 +33,26 @@
             {{ Form::open(array('route' => 'orders-update', 'method' => 'PUT', 'class'=>'col-md-12')) }}
                 <input class="btn btn-primary my-2" type="submit" value="Update Orders" />
             {{ Form::close() }}
-
         </div>
     </section>
 
     <div class="album py-5 bg-light">
         <div class="container">
+            @if ($products->isEmpty())
+                <div class="alert alert-danger">Please synchronize your Shopify products.</div>
+            @endif
 
+            @if ($customers->isEmpty())
+                <div class="alert alert-danger">Please synchronize your Shopify customers.</div>
+            @endif
+
+            @if ($orders->isEmpty())
+                <div class="alert alert-danger">Please synchronize your Shopify orders.</div>
+            @endif
+
+            @if (!$products->isEmpty() && !$customers->isEmpty() && !$orders->isEmpty())
+                <a href="{{route('get-average-order-for-all')}}" class="btn btn-secondary my-2">Get average</a>
+            @endif
         </div>
     </div>
 

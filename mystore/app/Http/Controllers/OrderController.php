@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Order;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -42,6 +43,16 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage());
         }
+    }
+
+    /**
+     * <p> Returns average order value </p>
+     *
+     * @return JsonResponse
+     */
+    public function getAverageOrderForAll()
+    {
+        return $this->sendResponse(Order::getTotalRevenue(), 'Average order value');
     }
 
     /**

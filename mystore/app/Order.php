@@ -30,4 +30,14 @@ class Order extends Model
 
         return $this->save();
     }
+
+    /**
+     * <p> Returns the average order value </p>
+     *
+     * @return float|int|mixed
+     */
+    public static function getTotalRevenue()
+    {
+        return Order::all()->average('total_price');
+    }
 }
