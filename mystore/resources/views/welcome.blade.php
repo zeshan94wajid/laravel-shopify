@@ -27,7 +27,11 @@
             {{ Form::close() }}
 
             {{ Form::open(array('route' => 'products-update', 'method' => 'PUT', 'class'=>'col-md-12')) }}
-            <input class="btn btn-primary my-2" type="submit" value="Update Products" />
+                <input class="btn btn-primary my-2" type="submit" value="Update Products" />
+            {{ Form::close() }}
+
+            {{ Form::open(array('route' => 'orders-update', 'method' => 'PUT', 'class'=>'col-md-12')) }}
+                <input class="btn btn-primary my-2" type="submit" value="Update Orders" />
             {{ Form::close() }}
 
         </div>

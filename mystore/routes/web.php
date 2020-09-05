@@ -22,3 +22,7 @@ Route::put('/customers/update', array(
 Route::put('/products/update', array(
     'as' => 'products-update',
     'uses' => 'ProductController@update'));
+
+Route::put('/orders/update', array(
+    'as' => 'orders-update',
+    'uses' => 'OrderController@update'));
